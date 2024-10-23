@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExtraOptions, PreloadAllModules, RouterModule } from '@angular/router';
@@ -11,6 +11,8 @@ import { mockApiServices } from 'app/mock-api';
 import { LayoutModule } from 'app/layout/layout.module';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
+import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import {initKeycloak} from "./core/helper/keycloak/init.keycloak";
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
@@ -18,29 +20,39 @@ const routerConfig: ExtraOptions = {
 };
 
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
-    imports     : [
-        BrowserModule,
-        BrowserAnimationsModule,
-        RouterModule.forRoot(appRoutes, routerConfig),
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(appRoutes, routerConfig),
+    KeycloakAngularModule,
+    // Fuse, FuseConfig & FuseMockAPI
+    FuseModule,
+    FuseConfigModule.forRoot(appConfig),
+    FuseMockApiModule.forRoot(mockApiServices),
 
-        // Fuse, FuseConfig & FuseMockAPI
-        FuseModule,
-        FuseConfigModule.forRoot(appConfig),
-        FuseMockApiModule.forRoot(mockApiServices),
+    // Core module of your application
+    CoreModule,
 
-        // Core module of your application
-        CoreModule,
+    // Layout module of your application
+    LayoutModule
+  ],
 
-        // Layout module of your application
-        LayoutModule
-    ],
-    bootstrap   : [
-        AppComponent
-    ]
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initKeycloak,
+      deps: [KeycloakService],
+      multi: true,
+    },
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
-export class AppModule
-{
+export class AppModule {
+
+
 }
