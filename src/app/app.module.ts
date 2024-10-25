@@ -28,15 +28,10 @@ const routerConfig: ExtraOptions = {
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes, routerConfig),
     KeycloakAngularModule,
-    // Fuse, FuseConfig & FuseMockAPI
     FuseModule,
     FuseConfigModule.forRoot(appConfig),
     FuseMockApiModule.forRoot(mockApiServices),
-
-    // Core module of your application
     CoreModule,
-
-    // Layout module of your application
     LayoutModule
   ],
 
