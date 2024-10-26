@@ -17,6 +17,7 @@ import { ShortcutsModule } from 'app/layout/common/shortcuts/shortcuts.module';
 import { UserModule } from 'app/layout/common/user/user.module';
 import { SharedModule } from 'app/shared/shared.module';
 import { ClassicLayoutComponent } from 'app/layout/layouts/vertical/classic/classic.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({ declarations: [
         ClassicLayoutComponent
@@ -24,21 +25,21 @@ import { ClassicLayoutComponent } from 'app/layout/layouts/vertical/classic/clas
     exports: [
         ClassicLayoutComponent
     ], imports: [RouterModule,
-        MatButtonModule,
-        MatDividerModule,
-        MatIconModule,
-        MatMenuModule,
-        FuseFullscreenModule,
-        FuseLoadingBarModule,
-        FuseNavigationModule,
-        LanguagesModule,
-        MessagesModule,
-        NotificationsModule,
-        QuickChatModule,
-        SearchModule,
-        ShortcutsModule,
-        UserModule,
-        SharedModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+    MatButtonModule,
+    MatDividerModule,
+    MatIconModule,
+    MatMenuModule,
+    FuseFullscreenModule,
+    FuseLoadingBarModule,
+    FuseNavigationModule,
+    LanguagesModule,
+    MessagesModule,
+    NotificationsModule,
+    QuickChatModule,
+    SearchModule,
+    ShortcutsModule,
+    UserModule,
+    SharedModule, NgOptimizedImage], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class ClassicLayoutModule
 {
 }
