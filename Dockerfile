@@ -21,7 +21,7 @@ RUN npm run build --prod
 
 # Étape de run avec Nginx pour servir l'application
 FROM nginx:alpine
-COPY --from=build /usr/local/app/dist/front-fonsis/browser /usr/share/nginx/html
+COPY --from=build /usr/local/app/dist/back-office/browser /usr/share/nginx/html
 COPY /nginx.conf  /etc/nginx/conf.d/default.conf
 
 # Exposer le port 8086

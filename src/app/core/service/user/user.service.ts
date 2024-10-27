@@ -1,7 +1,6 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError } from 'rxjs';
-import {KeycloakProfile} from "keycloak-js/lib/keycloak";
+import { KeycloakProfile } from 'keycloak-js';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +10,6 @@ export class UserService {
   public userProfile$ = new BehaviorSubject<KeycloakProfile>({});
 
   constructor(
-    private http: HttpClient,
   ) {
   }
 
@@ -22,5 +20,4 @@ export class UserService {
   setUserProfile(userProfile: KeycloakProfile): void {
     this.userProfile$.next(userProfile);
   }
-
 }
