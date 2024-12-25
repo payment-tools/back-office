@@ -6,4 +6,5 @@ export const environment = {
     realm: 'onepay',
     clientId: 'onepay-client',
   },
+  baseUrl: 'http://localhost:8086'
 };

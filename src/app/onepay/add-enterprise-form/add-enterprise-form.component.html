@@ -1,0 +1,84 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden" (ngSubmit)="onSubmit()" [formGroup]="enterpriseForm">
+        <div class="flex">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto">
+                <mat-label>Nom entreprise</mat-label>
+                <input
+                    id="name"
+                    formControlName="name"
+                    matInput
+                    [placeholder]="'This is a placeholder'">
+                <mat-hint>TODO: Edit for error</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="flex">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto">
+                <mat-label>Adresse</mat-label>
+                <input
+                    id="address"
+                    formControlName="address"
+                    matInput
+                    [placeholder]="'This is a placeholder'">
+                <mat-hint>TODO: Edit for error</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="flex">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto">
+                <mat-label>Nombre max de collaborateurs</mat-label>
+                <input
+                    id="maxQuota"
+                    formControlName="maxQuota"
+                    matInput
+                    type="number"
+                    [placeholder]="'This is a placeholder'">
+                <mat-hint>TODO: Edit for error</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="flex flex-row">
+
+                @for (module of allModules; track $index) {
+                    <input 
+                        type="checkbox" 
+                        id="enrolledModules"
+                        [value]="module" 
+                        formControlName="enrolledModules" 
+                        (click)="addModule(module)"/>
+                     <mat-label>{{module}}</mat-label>
+
+                        <!--<mat-checkbox
+                                formControlName="currentModule"
+                                class="mb-2"
+                                [color]="'primary'"
+                                [sele]>
+                                {{module}}
+                            </mat-checkbox>-->
+                }
+        </div>
+        <!--<div class="flex flex-col gt-xs:flex-row">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto gt-xs:pr-3">
+                <mat-label>Type de commerce</mat-label>
+                <mat-select
+                formControlName="enterpriseType"
+                id="enterpriseType">
+                    <mat-option [value]="modules.RESTAURATION">{{modules.RESTAURATION}}</mat-option>
+                    <mat-option [value]="modules.MARKET">{{modules.MARKET}}</mat-option>
+                    <mat-option [value]="modules.GAS_STATION">{{modules.GAS_STATION}}</mat-option>
+                    <mat-option [value]="modules.TELEPHONY">{{modules.TELEPHONY}}</mat-option>
+                </mat-select>
+                <mat-icon
+                    class="icon-size-5"
+                    matPrefix
+                    [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+            </mat-form-field>
+        </div>-->
+        <button mat-flat-button type="submit">Enregistrer</button>
+    </form>
+</div>

@@ -1,0 +1,137 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden" (ngSubmit)="onSubmit()" [formGroup]="adminForm">
+        <div class="flex">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto">
+                <mat-label>Nom</mat-label>
+                <input
+                    id="lastname"
+                    formControlName="lastname"
+                    matInput
+                    [placeholder]="'This is a placeholder'">
+                <mat-hint>TODO: Edit for error</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="flex">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto">
+                <mat-label>Prenom</mat-label>
+                <input 
+                formControlName="firstname"
+                id="firstname"
+                [placeholder]="'This is a placeholder'"
+                matInput>
+                <mat-icon
+                    class="icon-size-5"
+                    matPrefix
+                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="flex">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto">
+                <mat-label>Username</mat-label>
+                <input 
+                formControlName="username"
+                id="username"
+                [placeholder]="'This is a placeholder'"
+                matInput>
+                <mat-icon
+                    class="icon-size-5"
+                    matPrefix
+                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="flex">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto">
+                <mat-label>Email</mat-label>
+                <input 
+                formControlName="email"
+                id="email"
+                [placeholder]="'This is a placeholder'"
+                matInput>
+                <mat-icon
+                    class="icon-size-5"
+                    matPrefix
+                    [svgIcon]="'heroicons_solid:mail'"></mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="flex">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto">
+                <mat-label>Numéro téléphone</mat-label>
+                <input 
+                formControlName="phoneNumber"
+                id="phoneNumber"
+                [placeholder]="'This is a placeholder'"
+                matInput>
+                <mat-icon
+                    class="icon-size-5"
+                    matPrefix
+                    [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="flex flex-col gt-xs:flex-row">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto gt-xs:pr-3">
+                <mat-label>Rôle</mat-label>
+                <mat-select
+                formControlName="role"
+                id="role">
+                    <mat-option value="ENTERPRISE_ADMIN">Entreprise admin</mat-option>
+                    <mat-option value="SALES_ADMIN">Sales Admin</mat-option>
+                    <mat-option value="SUPER_ADMIN">Super admin</mat-option>
+                </mat-select>
+                <mat-icon
+                    class="icon-size-5"
+                    matPrefix
+                    [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+            </mat-form-field>
+        </div>
+        <!-- TODO SEPARATE FORMS SWITCH TYPE OF BUTTON CLICKED -->
+        <div class="flex flex-col gt-xs:flex-row">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto gt-xs:pr-3">
+                <mat-label>Entreprise</mat-label>
+                <mat-select 
+                formControlName="enterprise"
+                id="enterprise">
+                    <mat-option [value]="1">Entreprise 1</mat-option>
+                    <mat-option [value]="2">Entreprise 2</mat-option>
+                </mat-select>
+                <mat-icon
+                    class="icon-size-5"
+                    matPrefix
+                    [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+            </mat-form-field>
+        </div>
+       <!--  <div class="flex flex-col gt-xs:flex-row">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto gt-xs:pr-3">
+                <mat-label>Sales</mat-label>
+                <select 
+                formControlName="sales"
+                id="sales"
+                matNativeControl>
+                    <option value=""></option>
+                    <option value="SALES_1">Sales 1</option>
+                    <option value="SALES_2">Sales 2</option>
+                </select>
+                <mat-icon
+                    class="icon-size-5"
+                    matPrefix
+                    [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+            </mat-form-field>
+        </div> -->
+        <button mat-flat-button type="submit">Basic</button>
+    </form>
+</div>
