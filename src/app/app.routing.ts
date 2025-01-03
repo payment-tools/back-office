@@ -3,6 +3,7 @@ import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
 import { InitialDataResolver } from 'app/app.resolvers';
+import { AdminFormModule } from './onepay/admin-form/admin-form.module';
 
 export const appRoutes: Route[] = [
 
@@ -178,6 +179,9 @@ export const appRoutes: Route[] = [
                     // Forms
                     {
                         path: 'forms', children: [
+                            { path: 'admin-form', loadChildren: () => import('app/onepay/admin-form/admin-form.module').then(m => m.AdminFormModule) },
+                            { path: 'add-sales-form', loadChildren: () => import('app/onepay/add-sales-form/add-sales-form.module').then(m => m.AddSalesFormModule) },
+                            { path: 'add-enterprise-form', loadChildren: () => import('app/onepay/add-enterprise-form/add-enterprise-form.module').then(m => m.AddEnterpriseFormModule) },
                             { path: 'fields', loadChildren: () => import('app/modules/admin/ui/forms/fields/fields.module').then(m => m.FormsFieldsModule) },
                             { path: 'layouts', loadChildren: () => import('app/modules/admin/ui/forms/layouts/layouts.module').then(m => m.FormsLayoutsModule) },
                             { path: 'wizards', loadChildren: () => import('app/modules/admin/ui/forms/wizards/wizards.module').then(m => m.FormsWizardsModule) }
