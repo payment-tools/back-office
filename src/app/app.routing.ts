@@ -181,7 +181,12 @@ export const appRoutes: Route[] = [
                         path: 'forms', children: [
                             { path: 'admin-form', loadChildren: () => import('app/onepay/admin-form/admin-form.module').then(m => m.AdminFormModule) },
                             { path: 'add-sales-form', loadChildren: () => import('app/onepay/add-sales-form/add-sales-form.module').then(m => m.AddSalesFormModule) },
+                            { path: 'add-sales-profile-form', loadChildren: () => import('app/onepay/add-sales-profile-form/add-sales-profile-form.module').then(m => m.AddSalesProfileFormModule) },
                             { path: 'add-enterprise-form', loadChildren: () => import('app/onepay/add-enterprise-form/add-enterprise-form.module').then(m => m.AddEnterpriseFormModule) },
+                            { path: 'add-enterprise-profile-form', loadChildren: () => import('app/onepay/add-enterprise-profile-form/add-enterprise-profile-form.module').then(m => m.AddEnterpriseProfileFormModule) },
+                            { path: 'add-partnership-form', loadChildren: () => import('app/onepay/add-partnership-form/add-partnership-form.module').then(m => m.AddPartnershipFormModule) },
+                            { path: 'add-enterprise-configuration-form', loadChildren: () => import('app/onepay/add-enterprise-configuration-form/add-enterprise-configuration-form.module').then(m => m.AddEnterpriseConfigurationFormModule) },
+                            { path: 'add-sales-configuration-form', loadChildren: () => import('app/onepay/add-sales-configuration-form/add-sales-configuration-form.module').then(m => m.AddSalesConfigurationFormModule) },
                             { path: 'fields', loadChildren: () => import('app/modules/admin/ui/forms/fields/fields.module').then(m => m.FormsFieldsModule) },
                             { path: 'layouts', loadChildren: () => import('app/modules/admin/ui/forms/layouts/layouts.module').then(m => m.FormsLayoutsModule) },
                             { path: 'wizards', loadChildren: () => import('app/modules/admin/ui/forms/wizards/wizards.module').then(m => m.FormsWizardsModule) }
