@@ -100,14 +100,13 @@
                 [ngClass]="formFieldHelpers"
                 class="flex-auto gt-xs:pr-3">
                 <mat-label>Sales</mat-label>
-                <select 
+                <mat-select
                 formControlName="sales"
-                id="sales"
-                matNativeControl>
-                    <option value=""></option>
-                    <option value="SALES_1">Sales 1</option>
-                    <option value="SALES_2">Sales 2</option>
-                </select>
+                id="sales">
+                    <mat-option *ngFor="let sales of salesList" [value]="sales.id">
+                        {{ sales.name }}
+                    </mat-option>
+                </mat-select>
                 <mat-icon
                     class="icon-size-5"
                     matPrefix

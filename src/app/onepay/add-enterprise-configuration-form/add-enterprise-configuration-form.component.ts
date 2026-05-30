@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IEnterprise } from '../model/enterprise.model';
-import { Modules } from '../model/core.enum';
 import { EnterpriseConfigurationService } from '../services/enterprise-configuration.service';
+import { EnterpriseService } from '../services/enterprise.service';
 import { IEnterpriseConfiguration } from '../model/enterprise-configuration.model';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -11,44 +11,43 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './add-enterprise-configuration-form.component.html',
   styleUrl: './add-enterprise-configuration-form.component.scss'
 })
-export class AddEnterpriseConfigurationFormComponent implements OnInit{
+export class AddEnterpriseConfigurationFormComponent implements OnInit {
 
   formFieldHelpers: string[] = [''];
-  enterpriseConfigurationForm: FormGroup;
-  // TODO Mettre entreprise par défaut ==============================
-      selectedEnterprise: IEnterprise = {
-        id: 1,
-        ref: "string",
-            name: "string",
-            maxQuota: 10,
-            actualQuota: 10,
-            enrolledModules:[ Modules.RESTAURATION]
-      };
-  constructor (
+  enterpriseConfigurationForm!: FormGroup;
+  enterprises: IEnterprise[] = [];
+
+  constructor(
     private fb: FormBuilder,
-    private enterpriseConfigurationService: EnterpriseConfigurationService
-  ) {}
+    private enterpriseConfigurationService: EnterpriseConfigurationService,
+    private enterpriseService: EnterpriseService
+  ) { }
 
   ngOnInit(): void {
     this.initializeForm();
+    this.enterpriseService.getEnterprises().subscribe({
+      next: (data) => {
+        this.enterprises = data;
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log('Error loading enterprises', err);
+      }
+    });
   }
 
   onSubmit(): void {
     const formValue = this.enterpriseConfigurationForm.value;
-    let enterpriseConfiguration: IEnterpriseConfiguration = {...formValue};
-    enterpriseConfiguration.enterprise = this.selectedEnterprise;
-
+    const selectedEnterprise = this.enterprises.find(e => e.id === formValue.enterprise);
+    let enterpriseConfiguration: IEnterpriseConfiguration = { ...formValue };
+    enterpriseConfiguration.enterprise = selectedEnterprise!;
     this.enterpriseConfigurationService.createEnterpriseConfiguration(enterpriseConfiguration).subscribe({
       next: () => {
         console.log('Sended');
-        
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
-        
       }
-    })
-    
+    });
   }
 
   private initializeForm(): void {
@@ -59,12 +58,11 @@ export class AddEnterpriseConfigurationFormComponent implements OnInit{
       maxAmountGasStation: [''],
       maxAmountTelephony: [''],
       enterprisePercentage: [''],
-      employeePercentage: ['']
-    })
+      employeePercentage: [''],
+    });
   }
 
   getFormFieldHelpersAsString(): string {
     return this.formFieldHelpers.join(' ');
   }
-
 }
