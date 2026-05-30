@@ -1,17 +1,21 @@
 <div class="flex flex-col flex-auto min-w-0">
     <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden" (ngSubmit)="onSubmit()" [formGroup]="enterpriseConfigurationForm">
-        <div class="flex">
+        <div class="flex flex-col gt-xs:flex-row">
             <mat-form-field
                 [ngClass]="formFieldHelpers"
                 class="flex-auto">
-                <mat-label>Enterprise</mat-label>
-                <input
-                    id="enterprise"
-                    formControlName="enterprise"
-                    matInput
-                    value="À récuperer et définir"
-                    [placeholder]="'This is a placeholder'">
-                <mat-hint>TODO: Edit for error</mat-hint>
+                <mat-label>Entreprise</mat-label>
+                <mat-select
+                formControlName="enterprise"
+                id="enterprise">
+                    <mat-option *ngFor="let enterprise of enterprises" [value]="enterprise.id">
+                        {{ enterprise.name }}
+                    </mat-option>
+                </mat-select>
+                <mat-icon
+                    class="icon-size-5"
+                    matPrefix
+                    [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
             </mat-form-field>
         </div>
         <div class="flex">

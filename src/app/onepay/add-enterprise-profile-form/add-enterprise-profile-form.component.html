@@ -100,11 +100,12 @@
                 [ngClass]="formFieldHelpers"
                 class="flex-auto gt-xs:pr-3">
                 <mat-label>Entreprise</mat-label>
-                <mat-select 
+                <mat-select
                 formControlName="enterprise"
                 id="enterprise">
-                    <mat-option [value]="1">Entreprise 1</mat-option>
-                    <mat-option [value]="2">Entreprise 2</mat-option>
+                    <mat-option *ngFor="let enterprise of enterprises" [value]="enterprise.id">
+                        {{ enterprise.name }}
+                    </mat-option>
                 </mat-select>
                 <mat-icon
                     class="icon-size-5"

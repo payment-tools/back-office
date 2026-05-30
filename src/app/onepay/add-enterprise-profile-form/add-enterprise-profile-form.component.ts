@@ -1,74 +1,69 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IEnterprise, IEnterpriseProfile } from '../model/enterprise.model';
-import { Modules, Status } from '../model/core.enum';
-import { AdminService } from '../services/admin-service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Status } from '../model/core.enum';
 import { EnterpriseProfileService } from '../services/enterprise-profile.service';
+import { EnterpriseService } from '../services/enterprise.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-enterprise-profile-form',
   templateUrl: './add-enterprise-profile-form.component.html',
   styleUrl: './add-enterprise-profile-form.component.scss'
 })
-export class AddEnterpriseProfileFormComponent {
+export class AddEnterpriseProfileFormComponent implements OnInit {
 
   formFieldHelpers: string[] = [''];
-    adminForm!: FormGroup;
-    // TODO Mettre list entreprise 
-    selectedEnterprise: IEnterprise = {
-      id: 1,
-      ref: "string",
-          name: "string",
-          maxQuota: 10,
-          actualQuota: 10,
-          enrolledModules:[ Modules.RESTAURATION]
-    };
-  
-    constructor(
-      private fb: FormBuilder,
-      private enterpriseProfileService: EnterpriseProfileService
-    ){ }
-  
-    onSubmit(): void {
-      console.log(this.adminForm);
-      const formValue = this.adminForm.value;
-      let enterpriseProfile: IEnterpriseProfile = {...formValue}
-      //TODO enlever valeur en dur
-      enterpriseProfile.enterprise = this.selectedEnterprise;
-      enterpriseProfile.status = Status.ACTIVE;
-      this.enterpriseProfileService.createEnterpriseProfile(enterpriseProfile).subscribe({
-        next: () => {
-          console.log("Sended");
-          
-        },
-        error: (err: HttpErrorResponse) => {
-          console.log("Error");
-          
-        } 
-      })
-    }
-  
-    ngOnInit(): void {
-      this.initializeForm()
-    }
-  
-    private initializeForm(): void {
-      this.adminForm = this.fb.group({
-        lastname: [''],
-        firstname: [''],
-        username: [''],
-        email: [''],
-        phoneNumber: [''],
-        role: [''],
-        enterprise: [''],
-        //sales: ['']
-      })
-    }
-  
-    getFormFieldHelpersAsString(): string
-      {
-          return this.formFieldHelpers.join(' ');
-      }
+  adminForm!: FormGroup;
+  enterprises: IEnterprise[] = [];
 
+  constructor(
+    private fb: FormBuilder,
+    private enterpriseProfileService: EnterpriseProfileService,
+    private enterpriseService: EnterpriseService
+  ) { }
+
+  onSubmit(): void {
+    const formValue = this.adminForm.value;
+    const selectedEnterprise = this.enterprises.find(e => e.id === formValue.enterprise);
+    let enterpriseProfile: IEnterpriseProfile = { ...formValue };
+    enterpriseProfile.enterprise = selectedEnterprise!;
+    enterpriseProfile.status = Status.ACTIVE;
+    this.enterpriseProfileService.createEnterpriseProfile(enterpriseProfile).subscribe({
+      next: () => {
+        console.log('Sended');
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log('Error', err);
+      }
+    });
+  }
+
+  ngOnInit(): void {
+    this.initializeForm();
+    this.enterpriseService.getEnterprises().subscribe({
+      next: (data) => {
+        this.enterprises = data;
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log('Error loading enterprises', err);
+      }
+    });
+  }
+
+  private initializeForm(): void {
+    this.adminForm = this.fb.group({
+      lastname: [''],
+      firstname: [''],
+      username: [''],
+      email: [''],
+      phoneNumber: [''],
+      role: [''],
+      enterprise: [''],
+    });
+  }
+
+  getFormFieldHelpersAsString(): string {
+    return this.formFieldHelpers.join(' ');
+  }
 }
