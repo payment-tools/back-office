@@ -1,0 +1,121 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden" (ngSubmit)="onSubmit()" [formGroup]="enterpriseConfigurationForm">
+        <div class="flex">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto">
+                <mat-label>Enterprise</mat-label>
+                <input
+                    id="enterprise"
+                    formControlName="enterprise"
+                    matInput
+                    value="À récuperer et définir"
+                    [placeholder]="'This is a placeholder'">
+                <mat-hint>TODO: Edit for error</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="flex">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto">
+                <mat-label>Montant maximal restaurant</mat-label>
+                <input 
+                formControlName="maxAmountRestauration"
+                id="maxAmountRestauration"
+                [placeholder]="'This is a placeholder'"
+                matInput
+                type="number">
+                <mat-icon
+                    class="icon-size-5"
+                    matPrefix
+                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="flex">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto">
+                <mat-label>Montant maximal commerces</mat-label>
+                <input 
+                formControlName="maxAmountMarket"
+                id="maxAmountMarket"
+                [placeholder]="'This is a placeholder'"
+                matInput
+                type="number">
+                <mat-icon
+                    class="icon-size-5"
+                    matPrefix
+                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="flex">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto">
+                <mat-label>Montant maximal stations services</mat-label>
+                <input 
+                formControlName="maxAmountGasStation"
+                id="maxAmountGasStation"
+                [placeholder]="'This is a placeholder'"
+                matInput
+                type="number">
+                <mat-icon
+                    class="icon-size-5"
+                    matPrefix
+                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="flex">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto">
+                <mat-label>Montant maximal téléphonie</mat-label>
+                <input 
+                formControlName="maxAmountTelephony"
+                id="maxAmountTelephony"
+                [placeholder]="'This is a placeholder'"
+                matInput
+                type="number">
+                <mat-icon
+                    class="icon-size-5"
+                    matPrefix
+                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="flex">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto">
+                <mat-label>Pourcentage entreprise</mat-label>
+                <input 
+                formControlName="enterprisePercentage"
+                id="enterprisePercentage"
+                [placeholder]="'This is a placeholder'"
+                matInput
+                type="number">
+                <mat-icon
+                    class="icon-size-5"
+                    matPrefix
+                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="flex">
+            <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto">
+                <mat-label>Pourcentage employé</mat-label>
+                <input 
+                formControlName="employeePercentage"
+                id="employeePercentage"
+                [placeholder]="'This is a placeholder'"
+                matInput
+                type="number">
+                <mat-icon
+                    class="icon-size-5"
+                    matPrefix
+                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+            </mat-form-field>
+        </div>
+        <button mat-flat-button type="submit">Enregistrer</button>
+    </form>
+</div>

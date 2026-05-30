@@ -85,9 +85,8 @@
                 <mat-select
                 formControlName="role"
                 id="role">
-                    <mat-option value="ENTERPRISE_ADMIN">Entreprise admin</mat-option>
-                    <mat-option value="SALES_ADMIN">Sales Admin</mat-option>
-                    <mat-option value="SUPER_ADMIN">Super admin</mat-option>
+                    <mat-option value="ENTERPRISE_FINANCE">Sales finance</mat-option>
+                    <mat-option value="CLIENT">Client</mat-option>
                 </mat-select>
                 <mat-icon
                     class="icon-size-5"
@@ -101,12 +100,11 @@
                 [ngClass]="formFieldHelpers"
                 class="flex-auto gt-xs:pr-3">
                 <mat-label>Entreprise</mat-label>
-                <mat-select
+                <mat-select 
                 formControlName="enterprise"
                 id="enterprise">
-                    <mat-option *ngFor="let enterprise of enterprises" [value]="enterprise.id">
-                        {{ enterprise.name }}
-                    </mat-option>
+                    <mat-option [value]="1">Entreprise 1</mat-option>
+                    <mat-option [value]="2">Entreprise 2</mat-option>
                 </mat-select>
                 <mat-icon
                     class="icon-size-5"
@@ -114,25 +112,6 @@
                     [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
             </mat-form-field>
         </div>
-       <!--  <div class="flex flex-col gt-xs:flex-row">
-            <mat-form-field
-                [ngClass]="formFieldHelpers"
-                class="flex-auto gt-xs:pr-3">
-                <mat-label>Sales</mat-label>
-                <select 
-                formControlName="sales"
-                id="sales"
-                matNativeControl>
-                    <option value=""></option>
-                    <option value="SALES_1">Sales 1</option>
-                    <option value="SALES_2">Sales 2</option>
-                </select>
-                <mat-icon
-                    class="icon-size-5"
-                    matPrefix
-                    [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
-            </mat-form-field>
-        </div> -->
-        <button mat-flat-button type="submit">Basic</button>
+        <button mat-flat-button type="submit">Enregistrer</button>
     </form>
 </div>
